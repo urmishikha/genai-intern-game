@@ -1,0 +1,48 @@
+name: Docker Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Log in to Docker Hub (if pushing images)
+      - name: Login to Docker Hub
+        if: github.event_name == 'push'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      # Build and test the Docker containers
+      - name: Build and Test with Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml up -d --build
+          docker-compose ps
+          
+          # Run tests (example: ping the API)
+          sleep 10  # Wait for services to start
+          curl -X POST http://localhost:8000/api/guess \
+            -H "Content-Type: application/json" \
+            -d '{"word":"Rock", "guess":"Paper"}' | jq .
+          
+          # Verify Redis connection
+          docker-compose exec redis redis-cli ping
+
+      # Cleanup
+      - name: Stop Containers
+        if: always()
+        run: docker-compose down
