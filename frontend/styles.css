@@ -1,0 +1,115 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#current-word {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.game-area {
+    margin-bottom: 20px;
+}
+
+#guess-input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#submit-guess {
+    width: 25%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+#submit-guess:hover {
+    background-color: #2980b9;
+}
+
+#message {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    min-height: 20px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+#score {
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+.history, .global-count {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.history h3, .global-count h3 {
+    margin-top: 0;
+    color: #495057;
+}
+
+#guess-history {
+    list-style-type: none;
+    padding: 0;
+}
+
+#guess-history li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.persona-selector {
+    margin-top: 20px;
+}
+
+#persona-select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
